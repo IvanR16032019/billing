@@ -8,9 +8,10 @@ const GenerateInvoice = ({ data }) => {
     const doc = new jsPDF();
     doc.text("Factura", 20, 10);
     doc.text(`Cliente: ${customerName}`, 20, 20);
+
+    // Eliminando la propiedad `head` para que no haya encabezados
     doc.autoTable({
       startY: 30,
-      head: [["Producto", "Cantidad", "Precio", "Total"]],
       body: products.map((product) => [
         product.name,
         product.quantity,
@@ -18,6 +19,7 @@ const GenerateInvoice = ({ data }) => {
         product.total,
       ]),
     });
+
     doc.text(`Total: ${totalAmount}`, 20, doc.lastAutoTable.finalY + 10);
     doc.text(`Cambio a devolver: ${changeToReturn}`, 20, doc.lastAutoTable.finalY + 20);
     doc.save("factura.pdf");

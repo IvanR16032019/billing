@@ -14,7 +14,7 @@ function App() {
 
   return (
     <div>
-      <h1>Billing</h1>
+      <h1>Facturas</h1>
       
       <Container sx={{ padding: 2 }}>
         <BillingForm onCalculate={handleCalculate} />
